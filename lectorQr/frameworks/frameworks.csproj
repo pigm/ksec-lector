@@ -8,6 +8,7 @@
     <Folder Include="CSharp\" />
     <Folder Include="CSharp\Data\" />
     <Folder Include="CSharp\Data\model\" />
+    <Folder Include="CSharp\Utils\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Realm" Version="10.7.1" />

@@ -5,8 +5,10 @@ using Android.OS;
 using Android.Views;
 using Android.Widget;
 using AndroidX.AppCompat.App;
+using AndroidX.RecyclerView.Widget;
 using frameworks.CSharp.Data;
 using frameworks.CSharp.Data.model;
+using lectorQr.CSharp.Presentation.Adapter;
 
 namespace lectorQr.CSharp.Presentation.Activity
 {  
@@ -16,11 +18,17 @@ namespace lectorQr.CSharp.Presentation.Activity
         ScreenOrientation = Android.Content.PM.ScreenOrientation.Portrait)]
     public class QrListActivity : AppCompatActivity
     {
+        LinearLayoutManager layoutManager;
+        QrListAdapter adapter;
+        RecyclerView qrCodesRecyclerView;
         TextView codeText;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.activity_qr_list);
+            layoutManager = new LinearLayoutManager(this);
+            qrCodesRecyclerView = FindViewById<RecyclerView>(Resource.Id.qrCodesRecyclerView);
             codeText = FindViewById<TextView>(Resource.Id.codeText);
             showList();
         }
@@ -30,20 +38,21 @@ namespace lectorQr.CSharp.Presentation.Activity
             var codeList = DataManager.RealmInstance.All<CodeQr>().ToList();
             if (codeList == null || codeList.Count == 0)
             {
-                codeText.Text = GetString(Resource.String.empty_code);               
+                codeText.Text = GetString(Resource.String.empty_code);
+                codeText.Visibility = ViewStates.Visible;
             }
             else
             {
-                setList(codeList);
+                setRecyclerView(codeList);
             }
         }
 
-        private void setList(List<CodeQr> codeList)
+        private void setRecyclerView(List<CodeQr> qrCodeList)
         {
-            foreach (CodeQr aux in codeList)
-            {
-                codeText.Text = aux.Code;
-            }
+            adapter = new QrListAdapter(this, qrCodeList);
+            qrCodesRecyclerView.SetAdapter(adapter);
+            qrCodesRecyclerView.SetLayoutManager(layoutManager);
+            qrCodesRecyclerView.Visibility = ViewStates.Visible;
         }
     }
 }
