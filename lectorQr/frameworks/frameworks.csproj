@@ -4,4 +4,12 @@
     <TargetFramework>netstandard2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="CSharp\" />
+    <Folder Include="CSharp\Data\" />
+    <Folder Include="CSharp\Data\model\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Realm" Version="10.7.1" />
+  </ItemGroup>
 </Project>
