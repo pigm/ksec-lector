@@ -1,13 +1,7 @@
-﻿
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-
 using Android.App;
-using Android.Content;
 using Android.OS;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using AndroidX.AppCompat.App;
@@ -16,7 +10,10 @@ using frameworks.CSharp.Data.model;
 
 namespace lectorQr.CSharp.Presentation.Activity
 {  
-    [Activity(Label = "Lector Qr", Theme = "@style/AppTheme")]
+    [Activity(Label = "Lector Qr",
+        Theme = "@style/AppTheme",
+        ConfigurationChanges = Android.Content.PM.ConfigChanges.ScreenSize | Android.Content.PM.ConfigChanges.Orientation,
+        ScreenOrientation = Android.Content.PM.ScreenOrientation.Portrait)]
     public class QrListActivity : AppCompatActivity
     {
         TextView codeText;
@@ -25,16 +22,28 @@ namespace lectorQr.CSharp.Presentation.Activity
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.activity_qr_list);
             codeText = FindViewById<TextView>(Resource.Id.codeText);
+            showList();
+        }
+
+        private void showList()
+        {
             var codeList = DataManager.RealmInstance.All<CodeQr>().ToList();
-            if (codeList == null || codeList.Count == 0) {
-                codeText.Text = GetString(Resource.String.empty_code);
-            }else {
-                foreach (CodeQr aux in codeList)
-                {
-                    codeText.Text = aux.Code;
-                }
+            if (codeList == null || codeList.Count == 0)
+            {
+                codeText.Text = GetString(Resource.String.empty_code);               
             }
-            
+            else
+            {
+                setList(codeList);
+            }
+        }
+
+        private void setList(List<CodeQr> codeList)
+        {
+            foreach (CodeQr aux in codeList)
+            {
+                codeText.Text = aux.Code;
+            }
         }
     }
 }

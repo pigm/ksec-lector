@@ -10,7 +10,10 @@ using lectorQr.CSharp.Presentation.Contract;
 
 namespace lectorQr
 {
-    [Activity(Theme = "@style/Splash", MainLauncher = true)]
+    [Activity(Theme = "@style/Splash",
+        MainLauncher = true,
+        ConfigurationChanges = Android.Content.PM.ConfigChanges.ScreenSize | Android.Content.PM.ConfigChanges.Orientation,
+        ScreenOrientation = Android.Content.PM.ScreenOrientation.Portrait)]
     public class SplashActivity : AppCompatActivity, SplashContract
     {      
 

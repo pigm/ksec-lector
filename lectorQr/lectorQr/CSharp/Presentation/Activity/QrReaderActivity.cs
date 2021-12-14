@@ -10,7 +10,10 @@ using ZXing.Mobile;
 
 namespace lectorQr.CSharp.Presentation.Activity
 {
-    [Activity(Label = "Lector Qr", Theme = "@style/AppTheme")]
+    [Activity(Label = "Lector Qr",
+        Theme = "@style/AppTheme",
+        ConfigurationChanges = Android.Content.PM.ConfigChanges.ScreenSize | Android.Content.PM.ConfigChanges.Orientation,
+        ScreenOrientation = Android.Content.PM.ScreenOrientation.Portrait)]
     public class QrReaderActivity : AppCompatActivity
     {
         Button enterButton, goQrListButton;

@@ -16,10 +16,10 @@
         app:lottie_autoPlay="true" />
 	<TextView
         android:id="@+id/codeText"
+        style="@style/LargeText" 
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-        android:text="@string/title_text"
-		android:textSize="18dp"
+        android:text="@string/title_text"		
         android:layout_margin="16dp" />
 	<Button
         android:id="@+id/enterButton"
