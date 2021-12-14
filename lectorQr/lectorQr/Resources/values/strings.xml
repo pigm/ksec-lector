@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">lectorQr</string>
+
+    <!--textos qr reader-->
+    <string name="enter_text_button">VER</string>
+    <string name="qr_list_button">IR</string>
+    <string name="title_text">Hola, para escanear haz click en el botón.</string>
+    <string name="empty_code">No hay registros.</string>
+</resources>
