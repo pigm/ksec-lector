@@ -4,6 +4,7 @@ using Android.Views;
 using Android.Widget;
 using AndroidX.RecyclerView.Widget;
 using frameworks.CSharp.Data.model;
+using frameworks.CSharp.Utils;
 
 namespace lectorQr.CSharp.Presentation.Adapter
 {
@@ -42,7 +43,7 @@ namespace lectorQr.CSharp.Presentation.Adapter
         {
             QrViewHolder qrViewHolder = holder as QrViewHolder;
             CodeQr code = listQrCode[position];
-            qrViewHolder.titleText.Text = code.Code; 
+            qrViewHolder.titleText.Text = StringCipher.Decrypt(code.Code, Constants.KEY); 
            
         }
 
@@ -56,7 +57,7 @@ namespace lectorQr.CSharp.Presentation.Adapter
 
         private void onClick(List<Object> listObj)
         {
-            Toast.MakeText(activity, "", ToastLength.Short).Show();
+
         }
     }
 }
